@@ -8,64 +8,72 @@
  */
  -->
 <config>
-   <modules>
-      <Asperience_DeleteAllOrders>
-         <version>0.2.3</version>
-      </Asperience_DeleteAllOrders>
-   </modules>
+    <modules>
+        <Asperience_DeleteAllOrders>
+            <version>0.2.5</version>
+        </Asperience_DeleteAllOrders>
+    </modules>
    
-	<global>
-		<helpers>
+    <global>
+        <helpers>
             <deleteallorders>
                 <class>Asperience_DeleteAllOrders_Helper</class>
             </deleteallorders>
         </helpers>
-		<models>
-			<deleteallorders>
-				<class>Asperience_DeleteAllOrders_Model</class>
-			</deleteallorders>
-		</models>
-	</global>
-	
-	<admin>
-		<routers>
-			<asperience_deleteallorders>
-				<use>admin</use>
-				<args>
-					<module>Asperience_DeleteAllOrders</module>
-					<frontName>deleteallorders</frontName>
-				</args>
-			</asperience_deleteallorders>
-		</routers>
-	</admin>
+        <models>
+            <deleteallorders>
+                <class>Asperience_DeleteAllOrders_Model</class>
+            </deleteallorders>
+        </models>
+        <resources>
+            <asperience_deleteallorders_setup>
+                <setup>
+                    <module>Asperience_DeleteAllOrders</module>
+                    <class>Asperience_DeleteAllOrders_Model_Resource_Setup</class>
+                </setup>
+            </asperience_deleteallorders_setup>
+        </resources>
+    </global>
+    
+    <admin>
+        <routers>
+            <asperience_deleteallorders>
+                <use>admin</use>
+                <args>
+                    <module>Asperience_DeleteAllOrders</module>
+                    <frontName>deleteallorders</frontName>
+                </args>
+            </asperience_deleteallorders>
+        </routers>
+    </admin>
     
     <adminhtml>
-		<acl>
-			<resources>
-				<all>
-					<title>Allow delete</title>
-				</all>
-				<admin>
-					<children>
-						<sales>
-							<children>
-								<order>
-									<children>
-										<actions>
-											<children>
-												<delete>
-													<title>Delete Orders</title>
-												</delete>
-											</children>		
-										</actions>											
-									</children>
-								</order>
-							</children>
-						</sales>
-					</children>
-				</admin>
-			</resources>
-		</acl>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow delete</title>
+                </all>
+                <admin>
+                    <children>
+                        <sales>
+                            <children>
+                                <order>
+                                    <children>
+                                        <actions>
+                                            <children>
+                                                <delete>
+                                                    <title>Delete Orders</title>
+                                                </delete>
+                                            </children>
+                                        </actions>
+                                    </children>
+                                </order>
+                            </children>
+                        </sales>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
         <translate>
             <modules>
                 <Asperience_DeleteOrders>
@@ -76,11 +84,7 @@
             </modules>
         </translate>
         <events>
-        <!-- A tester :
-	        controller_action_layout_render_before_adminhtml_sales_order_index
-	    	controller_action_postdispatch_adminhtml_sales_order_index 
-	   	-->
-        	<adminhtml_block_html_before>
+            <adminhtml_block_html_before>
                 <observers>
                     <asperience_deleteallorders>
                         <class>deleteallorders/observer</class>
@@ -88,7 +92,7 @@
                     </asperience_deleteallorders>
                 </observers>
             </adminhtml_block_html_before>
-		</events>
+        </events>
     </adminhtml>
     
     <default>
