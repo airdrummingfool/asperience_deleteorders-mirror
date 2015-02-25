@@ -10,7 +10,7 @@
  */
 class Asperience_DeleteAllOrders_Model_Status
 {
-
+    //Format status list
     public function toOptionArray()
     {
         $statuses = Mage::getSingleton('sales/order_config')->getStatuses();

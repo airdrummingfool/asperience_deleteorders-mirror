@@ -14,16 +14,13 @@ class Asperience_DeleteAllOrders_Model_Observer
     
     public function addOptionToSelect($observer)
     {
-        if ($observer->getEvent()->getBlock()->getId() == 'sales_order_grid')
-        {
+        if ($observer->getEvent()->getBlock()->getId()=='sales_order_grid') {
             $massBlock = $observer->getEvent()->getBlock()->getMassactionBlock();
-            if ($massBlock)
-            {
-                if(Mage::getStoreConfig(self::XML_PATH_SALES_IS_ACTIVE) && 
-                        Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/delete')) 
-                {
-                    if(Mage::getStoreConfig(self::XML_PATH_SALES_DELETE_ALL)) 
-                    {
+            if ($massBlock) {
+                if (Mage::getStoreConfig(self::XML_PATH_SALES_IS_ACTIVE) &&
+                        Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/delete')) {
+                    if (Mage::getStoreConfig(self::XML_PATH_SALES_DELETE_ALL)) {
+                        // Level 2: delete orders with other documents attached
                         $massBlock->addItem('delete_order', array(
                             'label'=> Mage::helper('deleteallorders')->__('Delete All !'),
                             'url'  => Mage::helper('adminhtml')->getUrl('deleteallorders'),
@@ -32,6 +29,7 @@ class Asperience_DeleteAllOrders_Model_Observer
                                 Warning: invoices/shipments/credit memos associated will be also deleted!'),
                         ));
                     } else {
+                        // Level 1: delete orders without documents attached
                         $massBlock->addItem('delete_order', array(
                             'label'=> Mage::helper('deleteallorders')->__('Delete All !'),
                             'url'  => Mage::helper('adminhtml')->getUrl('deleteallorders'),

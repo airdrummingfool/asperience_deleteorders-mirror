@@ -12,9 +12,7 @@
         <Asperience_DeleteAllOrders>
             <active>true</active>
             <codePool>community</codePool>
-            <depends>
-                <Asperience_Notificationmanager/>
-            </depends>
         </Asperience_DeleteAllOrders>
+        <depends>Asperience_Notificationmanager</depends>
     </modules>
 </config>
